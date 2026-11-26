@@ -17,6 +17,13 @@ export function AuthProvider({ children }) {
       .finally(() => setLoading(false));
   }, []);
 
+  // The API client fires this when the server rejects our token (expired or account gone).
+  useEffect(() => {
+    const onExpired = () => setUser(null);
+    window.addEventListener('cc:session-expired', onExpired);
+    return () => window.removeEventListener('cc:session-expired', onExpired);
+  }, []);
+
   const handleAuth = ({ token, user: u }) => {
     tokenStore.set(token);
     setUser(u);

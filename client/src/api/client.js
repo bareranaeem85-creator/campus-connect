@@ -20,6 +20,11 @@ async function request(method, path, body) {
   }
 
   const data = res.status === 204 ? null : await res.json().catch(() => null);
+  // Session expired / account removed: drop the token and tell the app to log out.
+  if (res.status === 401 && token) {
+    tokenStore.clear();
+    window.dispatchEvent(new Event('cc:session-expired'));
+  }
   if (!res.ok) {
     // No JSON message + 5xx = server unreachable/restarting (e.g. Render free tier waking up).
     const fallback = res.status >= 500 ? 'Server is starting up — please try again in a few seconds.' : `Request failed (${res.status})`;
