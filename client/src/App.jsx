@@ -10,6 +10,8 @@ import RequestClub from './pages/RequestClub';
 import Admin from './pages/Admin';
 import PostDetail from './pages/PostDetail';
 import NewPost from './pages/NewPost';
+import Announcements from './pages/Announcements';
+import Events from './pages/Events';
 
 export default function App() {
   return (
@@ -26,6 +28,8 @@ export default function App() {
         <Route path="/request-club" element={<RequestClub />} />
         <Route path="/posts/:id" element={<PostDetail />} />
         <Route path="/new-post" element={<NewPost />} />
+        <Route path="/announcements" element={<Announcements />} />
+        <Route path="/events" element={<Events />} />
         <Route path="/admin" element={<RequireAdmin><Admin /></RequireAdmin>} />
       </Route>
 

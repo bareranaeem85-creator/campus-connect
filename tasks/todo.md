@@ -19,8 +19,8 @@
 - [x] Moderator/admin delete + pin; votes; bookmarks
 
 ## 4. Department
-- [ ] Announcements CRUD (admin), public list newest first
-- [ ] Events: upcoming/past tabs, admin create/edit/cancel
+- [x] Announcements CRUD (admin), public list newest first
+- [x] Events: upcoming/past tabs, admin create/edit/cancel
 
 ## 5. Polish
 - [ ] Responsive navbar, toasts, confirm dialogs, loading/empty states, motion

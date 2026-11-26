@@ -9,10 +9,11 @@ const Event = require('../models/Event');
 // Demo accounts (also shown on the login page). Shared password keeps demos simple.
 const DEMO_PASSWORD = 'password123';
 
+// Event days are stored at 12:00 UTC (see eventController).
 const daysFromNow = (n) => {
   const d = new Date();
-  d.setHours(0, 0, 0, 0);
-  d.setDate(d.getDate() + n);
+  d.setUTCHours(12, 0, 0, 0);
+  d.setUTCDate(d.getUTCDate() + n);
   return d;
 };
 const hoursAgo = (n) => new Date(Date.now() - n * 3600 * 1000);

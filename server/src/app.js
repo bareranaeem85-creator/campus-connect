@@ -17,6 +17,9 @@ app.use('/api/clubs', require('./routes/clubRoutes'));
 app.use('/api/club-requests', require('./routes/clubRequestRoutes'));
 app.use('/api/posts', require('./routes/postRoutes'));
 app.use('/api/comments', require('./routes/commentRoutes'));
+app.use('/api/announcements', require('./routes/announcementRoutes'));
+app.use('/api/events', require('./routes/eventRoutes'));
+app.use('/api/stats', require('./routes/statsRoutes'));
 app.use('/api', notFound);
 
 // ---- Serve the built React app in production (single Render service) ----
