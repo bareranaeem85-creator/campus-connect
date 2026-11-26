@@ -21,7 +21,9 @@ async function request(method, path, body) {
 
   const data = res.status === 204 ? null : await res.json().catch(() => null);
   if (!res.ok) {
-    const err = new Error(data?.message || `Request failed (${res.status})`);
+    // No JSON message + 5xx = server unreachable/restarting (e.g. Render free tier waking up).
+    const fallback = res.status >= 500 ? 'Server is starting up — please try again in a few seconds.' : `Request failed (${res.status})`;
+    const err = new Error(data?.message || fallback);
     err.status = res.status;
     throw err;
   }
