@@ -124,7 +124,7 @@ export default function Landing() {
         <span className="label-pill reveal">Why Campus Connect</span>
         <ScrollWords
           text="A department is more than its timetable. It is the people you meet, the clubs you build and the moments you share. We bring it together. You own it."
-          highlight={['You', 'own', 'it.']}
+          highlightLast={3}
         />
       </section>
 

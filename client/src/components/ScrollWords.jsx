@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 
 /**
  * Big statement text whose words "light up" one by one as the section scrolls
- * through the viewport (Eclipse-style). `highlight` words get the accent colour.
+ * through the viewport (Eclipse-style). The last `highlightLast` words get the accent colour.
  */
-export default function ScrollWords({ text, highlight = [] }) {
+export default function ScrollWords({ text, highlightLast = 0 }) {
   const ref = useRef(null);
   const words = text.split(' ');
   const [lit, setLit] = useState(0);
@@ -40,15 +40,13 @@ export default function ScrollWords({ text, highlight = [] }) {
     };
   }, [words.length]);
 
-  const accent = new Set(highlight.map((w) => w.toLowerCase()));
-
   return (
     <p className="scroll-words" ref={ref} aria-label={text}>
       {words.map((w, i) => (
         <span
           key={i}
           aria-hidden="true"
-          className={`${i < lit ? 'is-lit' : ''} ${accent.has(w.replace(/[^\w']/g, '').toLowerCase()) ? 'is-accent' : ''}`}
+          className={`${i < lit ? 'is-lit' : ''} ${i >= words.length - highlightLast ? 'is-accent' : ''}`}
         >
           {w}{' '}
         </span>
