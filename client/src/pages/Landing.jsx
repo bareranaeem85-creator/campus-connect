@@ -4,6 +4,7 @@ import { api } from '../api/client';
 import HeroBackground from '../components/HeroBackground';
 import CrystalizedBall from '../components/CrystalizedBall/CrystalizedBall';
 import CampusCarousel from '../components/CampusCarousel';
+import ScrollWords from '../components/ScrollWords';
 import CountUp from '../components/CountUp';
 import { ArrowIcon, LogoMark } from '../components/ui';
 import useReveal from '../hooks/useReveal';
@@ -85,8 +86,10 @@ export default function Landing() {
         <HeroBackground />
         <div className="container landing-hero-inner">
           <span className="label-pill fade-up">CS Department · Community platform</span>
-          <h1 className="landing-title fade-up" style={{ animationDelay: '0.08s' }}>
-            Your department.<br /><span className="hero-accent">One place.</span>
+          <h1 className="landing-title">
+            <span className="line"><span>Your</span></span>
+            <span className="line"><span>department.</span></span>
+            <span className="line"><span className="hero-accent">One place.</span></span>
           </h1>
           <p className="lead landing-lead fade-up" style={{ animationDelay: '0.16s' }}>
             Clubs, discussions, official announcements and the event calendar — one home for every CS student.
@@ -116,6 +119,15 @@ export default function Landing() {
         </div>
       </div>
 
+      {/* ---------- Statement (words light up on scroll) ---------- */}
+      <section className="container manifesto">
+        <span className="label-pill reveal">Why Campus Connect</span>
+        <ScrollWords
+          text="A department is more than its timetable. It is the people you meet, the clubs you build and the moments you share. We bring it together. You own it."
+          highlight={['You', 'own', 'it.']}
+        />
+      </section>
+
       {/* ---------- Features ---------- */}
       <section className="container landing-section" id="features">
         <div className="reveal">
@@ -133,6 +145,18 @@ export default function Landing() {
               <p className="muted">{f.text}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      {/* ---------- Video band ---------- */}
+      <section className="container landing-section">
+        <div className="video-band reveal">
+          <video src="/media/campus-video.mp4" autoPlay muted loop playsInline aria-hidden="true" />
+          <div className="video-shade" />
+          <div className="video-copy">
+            <span className="label-pill label-pill-light">Built by students</span>
+            <h2 className="video-title">No limits.<br />Just people.</h2>
+          </div>
         </div>
       </section>
 

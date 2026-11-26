@@ -41,6 +41,9 @@ async function seedDatabase() {
     { name: 'AI Circle', description: 'Machine learning paper reads, Kaggle squads and hands-on model building.', color: '#639CC5', mods: [mod] },
     { name: 'Competitive Programming', description: 'Contest prep, problem sets and ICPC team practice every weekend.', color: '#F3EFE7', mods: [] },
     { name: 'Cyber Security Club', description: 'CTFs, secure coding workshops and talks from industry folks.', color: '#F2B544', mods: [] },
+    { name: 'Computing Media Society (CMS)', description: 'Design, photography, video and social media for the department — we tell the CS story.', color: '#9CC9E8', mods: [] },
+    { name: 'Event Management Society (EMS)', description: 'Plans and runs departmental events, from orientation week to the annual tech fest.', color: '#FF8A73', mods: [] },
+    { name: 'Sports Society', description: 'Cricket, futsal, table tennis and e-sports — tournaments and friendly matches all year round.', color: '#639CC5', mods: [] },
   ];
   const clubs = {};
   for (const c of clubData) {
