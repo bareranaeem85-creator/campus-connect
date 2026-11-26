@@ -84,7 +84,7 @@ h1, h2, h3, h4 {
 
 /* ---------- Layout ---------- */
 .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 20px; }
-.page { padding: 140px 0 96px; min-height: 100vh; }
+.page { padding: 140px 0 96px; min-height: calc(100vh - 80px); }
 .page-header { margin-bottom: 48px; }
 .page-header-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 .stack { display: flex; flex-direction: column; gap: 16px; }
@@ -310,7 +310,7 @@ h1, h2, h3, h4 {
 .menu-btn { display: none; width: 42px; height: 42px; border-radius: 50%; border: 0; background: var(--text); color: var(--surface); cursor: pointer; place-items: center; }
 .mobile-menu { display: none; }
 
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
   .nav-links, .nav-right .hide-mobile { display: none; }
   .menu-btn { display: grid; }
   .mobile-menu {
@@ -578,3 +578,6 @@ h1, h2, h3, h4 {
   .event-day { font-size: 2.4rem; }
   .event-actions { grid-column: 1 / -1; justify-content: flex-start; margin-left: -12px; }
 }
+
+/* ---------- Footer ---------- */
+.footer { border-top: 1px solid var(--border); padding: 28px 0; }

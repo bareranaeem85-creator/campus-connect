@@ -6,7 +6,7 @@ import PostComposer from './PostComposer';
 import { Empty, SkeletonList } from './ui';
 
 /** Discussion feed for one club: composer (members only), sort tabs, posts. */
-export default function ClubFeed({ club }) {
+export default function ClubFeed({ club, onCountChange }) {
   const { canModerate } = useAuth();
   const [posts, setPosts] = useState(null);
   const [sort, setSort] = useState('new');
@@ -23,10 +23,14 @@ export default function ClubFeed({ club }) {
     [...list].sort((a, b) => (a.pinned !== b.pinned ? (a.pinned ? -1 : 1) : sort === 'top' && b.score !== a.score ? b.score - a.score : new Date(b.createdAt) - new Date(a.createdAt)));
 
   const update = (p) => setPosts((list) => resort(list.map((x) => (x._id === p._id ? p : x))));
-  const remove = (id) => setPosts((list) => list.filter((x) => x._id !== id));
+  const remove = (id) => {
+    setPosts((list) => list.filter((x) => x._id !== id));
+    onCountChange?.(-1);
+  };
   const add = (p) => {
     setPosts((list) => resort([p, ...list]));
     setComposing(false);
+    onCountChange?.(1);
   };
 
   const canPost = club.isMember || canModerate(club._id);

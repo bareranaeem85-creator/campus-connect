@@ -55,7 +55,7 @@ export default function ClubPage() {
       </header>
 
       <div className="two-col section">
-        <ClubFeed club={club} />
+        <ClubFeed club={club} onCountChange={(d) => setClub((c) => ({ ...c, postCount: c.postCount + d }))} />
 
         <aside className="stack fade-up">
           <div className="card">

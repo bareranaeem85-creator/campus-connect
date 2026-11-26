@@ -38,6 +38,12 @@ export default function Layout() {
           <Outlet />
         </div>
       </main>
+      <footer className="footer">
+        <div className="container spread">
+          <span className="mono">Campus Connect · CS Department</span>
+          <span className="mono">Clubs · Discussions · Announcements · Events</span>
+        </div>
+      </footer>
     </>
   );
 }

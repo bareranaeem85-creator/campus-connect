@@ -23,7 +23,7 @@
 - [x] Events: upcoming/past tabs, admin create/edit/cancel
 
 ## 5. Polish
-- [ ] Responsive navbar, toasts, confirm dialogs, loading/empty states, motion
+- [x] Responsive navbar, toasts, confirm dialogs, loading/empty states, motion
 
 ## 6. Ship
-- [ ] README, render.yaml, production static serving
+- [x] README, render.yaml, production static serving
