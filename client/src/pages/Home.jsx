@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import PostCard from '../components/PostCard';
 import AnnouncementRow from '../components/AnnouncementRow';
 import EventRow from '../components/EventRow';
+import HeroBackground from '../components/HeroBackground';
 import { ArrowIcon, Empty, SkeletonList } from '../components/ui';
 
 export default function Home() {
@@ -29,6 +30,7 @@ export default function Home() {
     <>
       {/* ---- Hero ---- */}
       <section className="hero">
+        <HeroBackground />
         <div className="fade-up">
           <span className="label-pill">Hello, {user.name.split(' ')[0]}</span>
           <h1 className="hero-title">Your department.<br /><span className="hero-accent">One place.</span></h1>
