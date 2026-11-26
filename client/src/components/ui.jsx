@@ -15,9 +15,9 @@ export const SearchIcon = () => (
 
 export const LogoMark = ({ className = 'logo-mark' }) => (
   <svg className={className} viewBox="0 0 64 64" aria-hidden="true">
-    <rect width="64" height="64" rx="20" fill="#2B2420" />
-    <circle cx="26" cy="32" r="10" fill="none" stroke="#B5EAB5" strokeWidth="5" />
-    <circle cx="38" cy="32" r="10" fill="none" stroke="#B5EAB5" strokeWidth="5" />
+    <rect width="64" height="64" rx="20" fill="#EB2F33" />
+    <circle cx="26" cy="32" r="10" fill="none" stroke="#F3EFE7" strokeWidth="5" />
+    <circle cx="38" cy="32" r="10" fill="none" stroke="#F3EFE7" strokeWidth="5" />
   </svg>
 );
 

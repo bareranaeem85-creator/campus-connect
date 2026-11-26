@@ -56,7 +56,7 @@ export default function AuthPage({ mode = 'login' }) {
             Your department.<br /><span className="accent">One place.</span>
           </h1>
         </div>
-        <p className="mono" style={{ color: '#b9aea4', margin: 0 }}>Clubs · Discussions · Announcements · Events</p>
+        <p className="mono" style={{ color: 'var(--muted)', margin: 0 }}>Clubs · Discussions · Announcements · Events</p>
       </aside>
 
       <main className="auth-main">

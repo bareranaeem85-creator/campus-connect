@@ -4,7 +4,7 @@ const Post = require('../models/Post');
 const Comment = require('../models/Comment');
 const { ApiError, asyncHandler, requireFields, escapeRegex, exactCI } = require('../utils/http');
 
-const BLOB_COLORS = ['#B5EAB5', '#F4C99B', '#C9D7F2', '#EBC3C3', '#E3D5F0', '#F2E29B'];
+const BLOB_COLORS = ['#EB2F33', '#639CC5', '#F3EFE7', '#F2B544', '#9CC9E8', '#FF8A73']; // palette-matched blob colours
 
 /** Public shape of a club: counts instead of full member arrays, plus viewer flags. */
 const serialize = (club, userId) => ({

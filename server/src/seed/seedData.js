@@ -37,10 +37,10 @@ async function seedDatabase() {
 
   // ---- Clubs ----
   const clubData = [
-    { name: 'Web Dev Society', description: 'Build for the web — React, Node, design systems and weekly project showcases.', color: '#B5EAB5', mods: [mod] },
-    { name: 'AI Circle', description: 'Machine learning paper reads, Kaggle squads and hands-on model building.', color: '#F4C99B', mods: [mod] },
-    { name: 'Competitive Programming', description: 'Contest prep, problem sets and ICPC team practice every weekend.', color: '#C9D7F2', mods: [] },
-    { name: 'Cyber Security Club', description: 'CTFs, secure coding workshops and talks from industry folks.', color: '#EBC3C3', mods: [] },
+    { name: 'Web Dev Society', description: 'Build for the web — React, Node, design systems and weekly project showcases.', color: '#EB2F33', mods: [mod] },
+    { name: 'AI Circle', description: 'Machine learning paper reads, Kaggle squads and hands-on model building.', color: '#639CC5', mods: [mod] },
+    { name: 'Competitive Programming', description: 'Contest prep, problem sets and ICPC team practice every weekend.', color: '#F3EFE7', mods: [] },
+    { name: 'Cyber Security Club', description: 'CTFs, secure coding workshops and talks from industry folks.', color: '#F2B544', mods: [] },
   ];
   const clubs = {};
   for (const c of clubData) {

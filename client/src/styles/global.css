@@ -1,23 +1,31 @@
 /* ==========================================================================
    Campus Connect — design system
-   Warm editorial palette · Unbounded headings · Manrope body · JetBrains Mono labels
+   Navy poster palette: Egyptian Blue · Stone Blue · Scarlet Red
+   Anton headings · Manrope body · JetBrains Mono labels
    ========================================================================== */
 
 :root {
-  --bg: #eeeae4;
-  --surface: #f7f4ef;
-  --surface-2: #e6e0d8;
-  --text: #2b2420;
-  --muted: #8a7f76;
-  --border: #ddd6cd;
-  --accent: #b5eab5;
-  --accent-hover: #a2dea2;
-  --accent-dark: #3e6b48;
-  --danger: #c2553d;
-  --danger-soft: #f3d9d2;
-  --warn-soft: #f4e3bf;
+  color-scheme: dark; /* dark native inputs, selects, scrollbars */
 
-  --font-display: 'Unbounded', 'Syne', system-ui, sans-serif;
+  --bg: #03203d;          /* Egyptian Blue */
+  --surface: #0a2b4d;     /* cards */
+  --surface-2: #12385f;   /* hover / pressed */
+  --surface-deep: #011629;/* auth side panel */
+  --text: #f3efe7;        /* warm off-white */
+  --text-soft: #c9d4e0;   /* body copy */
+  --muted: #93a8bf;
+  --border: #1d4268;
+  --border-strong: #2e5a85;
+  --accent: #eb2f33;      /* Scarlet Red: buttons, active tabs, big headings */
+  --accent-hover: #d1232a;
+  --on-accent: #ffffff;
+  --accent-dark: #639cc5; /* Stone Blue: links, labels, focus */
+  --danger: #ff7a73;      /* lighter red so destructive actions read on navy */
+  --danger-soft: rgba(255, 122, 115, 0.14);
+  --warn-soft: #f4e3bf;
+  --info-soft: rgba(99, 156, 197, 0.16);
+
+  --font-display: 'Anton', 'Bebas Neue', Impact, system-ui, sans-serif;
   --font-body: 'Manrope', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
@@ -167,7 +175,7 @@ h1, h2, h3, h4 {
 .btn-primary { background: var(--accent); }
 .btn-primary:hover { background: var(--accent-hover); }
 .btn-dark { background: var(--text); color: var(--surface); }
-.btn-dark:hover { background: #45392f; color: var(--surface); }
+.btn-dark:hover { background: #ffffff; color: var(--bg); }
 .btn-outline { background: transparent; border-color: var(--text); }
 .btn-outline:hover { background: var(--text); color: var(--surface); }
 .btn-ghost { background: transparent; padding: 8px 12px; color: var(--muted); }
@@ -202,7 +210,7 @@ h1, h2, h3, h4 {
   padding: 24px;
 }
 .card-hover { transition: transform 0.35s var(--ease), border-color 0.35s var(--ease); }
-.card-hover:hover { transform: translateY(-2px); border-color: #cbc2b6; }
+.card-hover:hover { transform: translateY(-2px); border-color: var(--border-strong); }
 .card-link { color: inherit; display: block; }
 .card-link:hover { color: inherit; }
 
@@ -223,7 +231,7 @@ h1, h2, h3, h4 {
 }
 .input:focus,
 .textarea:focus,
-.select:focus { outline: none; border-color: var(--accent-dark); background: #fbf9f6; }
+.select:focus { outline: none; border-color: var(--accent-dark); background: var(--surface-2); }
 .textarea { resize: vertical; min-height: 110px; }
 .form { display: flex; flex-direction: column; gap: 18px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -270,7 +278,7 @@ h1, h2, h3, h4 {
   justify-content: space-between;
   gap: 16px;
   padding: 8px 8px 8px 22px;
-  background: rgba(247, 244, 239, 0.94);
+  background: rgba(10, 43, 77, 0.92);
   border: 1px solid var(--border);
   border-radius: var(--pill);
   backdrop-filter: saturate(1.2) blur(8px);
@@ -362,7 +370,7 @@ h1, h2, h3, h4 {
 .toast.error .dot { background: #ff8a70; }
 
 /* ---------- Modal / confirm ---------- */
-.overlay { position: fixed; inset: 0; z-index: 150; background: rgba(43, 36, 32, 0.4); display: grid; place-items: center; padding: 20px; animation: fade 0.25s var(--ease); }
+.overlay { position: fixed; inset: 0; z-index: 150; background: rgba(1, 12, 24, 0.7); display: grid; place-items: center; padding: 20px; animation: fade 0.25s var(--ease); }
 .modal { width: 100%; max-width: 520px; max-height: calc(100vh - 40px); overflow-y: auto; background: var(--surface); border-radius: var(--radius); padding: 28px; border: 1px solid var(--border); animation: fadeUp 0.35s var(--ease); }
 .modal h3 { font-size: 1.2rem; text-transform: uppercase; margin-bottom: 8px; }
 .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
@@ -404,7 +412,7 @@ h1, h2, h3, h4 {
 .auth-side h1 { font-size: clamp(2.2rem, 4.6vw, 4rem); font-weight: 800; text-transform: uppercase; line-height: 1; }
 .auth-side .accent { color: var(--accent); }
 .auth-side .logo { color: var(--surface); }
-.auth-side .ring { position: absolute; border: 1px solid rgba(181, 234, 181, 0.25); border-radius: 50%; }
+.auth-side .ring { position: absolute; border: 1px solid rgba(99, 156, 197, 0.25); border-radius: 50%; }
 .auth-main { padding: 48px 24px; display: grid; place-items: center; }
 .auth-box { width: 100%; max-width: 420px; }
 .auth-box h2 { font-size: 1.8rem; text-transform: uppercase; margin: 12px 0 6px; }
@@ -422,7 +430,7 @@ h1, h2, h3, h4 {
   text-align: left;
   transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
 }
-.demo-item:hover { border-color: var(--accent-dark); background: #fbf9f6; }
+.demo-item:hover { border-color: var(--accent-dark); background: var(--surface-2); }
 .demo-item strong { font-size: 0.88rem; }
 @media (max-width: 860px) {
   .auth-page { grid-template-columns: 1fr; }
@@ -471,7 +479,7 @@ h1, h2, h3, h4 {
 .table th { text-align: left; padding: 14px 18px; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 500; border-bottom: 1px solid var(--border); }
 .table td { padding: 16px 18px; border-bottom: 1px solid var(--border); vertical-align: top; }
 .table tbody tr { transition: background 0.2s var(--ease); }
-.table tbody tr:hover { background: #fbf9f6; }
+.table tbody tr:hover { background: var(--surface-2); }
 .table tbody tr:last-child td { border-bottom: 0; }
 .table-actions { text-align: right; white-space: nowrap; }
 @media (max-width: 760px) {
@@ -501,12 +509,12 @@ h1, h2, h3, h4 {
 .post-title a:hover { color: var(--accent-dark); }
 .post-title-full { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.4rem, 3vw, 2rem); margin: 10px 0 8px; letter-spacing: -0.02em; line-height: 1.25; }
 .post-link { display: inline-block; font-family: var(--font-mono); font-size: 0.8rem; padding: 4px 12px; border-radius: var(--pill); background: var(--bg); border: 1px solid var(--border); margin: 6px 0; word-break: break-all; }
-.post-body { margin: 6px 0 0; color: #4c423b; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; white-space: pre-wrap; }
+.post-body { margin: 6px 0 0; color: var(--text-soft); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; white-space: pre-wrap; }
 .post-body.full { display: block; -webkit-line-clamp: unset; font-size: 1.04rem; }
 .post-actions { display: flex; gap: 2px; margin: 10px 0 0 -12px; flex-wrap: wrap; }
 .post-actions .is-on { color: var(--accent-dark); font-weight: 700; }
 .danger-text { color: var(--danger) !important; }
-.notice { padding: 14px 18px; border-radius: var(--radius-sm); background: var(--warn-soft); color: #6b4e14; margin-bottom: 20px; font-size: 0.92rem; }
+.notice { padding: 14px 18px; border-radius: var(--radius-sm); background: var(--info-soft); color: var(--text); border: 1px solid var(--border-strong); margin-bottom: 20px; font-size: 0.92rem; }
 .form-error { color: var(--danger); margin: 0; font-size: 0.9rem; }
 .composer-club { width: auto; min-width: 180px; padding: 9px 14px; border-radius: var(--pill); }
 .back-link { color: var(--muted); }
@@ -548,7 +556,7 @@ h1, h2, h3, h4 {
 .ann-row { display: grid; grid-template-columns: 200px minmax(0, 1fr) auto; gap: 28px; padding: 28px 0; border-bottom: 1px solid var(--border); transition: background 0.3s var(--ease); }
 .ann-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
 .ann-title { font-family: var(--font-body); font-weight: 800; font-size: 1.25rem; letter-spacing: -0.01em; line-height: 1.3; text-transform: none; }
-.ann-body { margin: 8px 0 0; color: #4c423b; white-space: pre-wrap; }
+.ann-body { margin: 8px 0 0; color: var(--text-soft); white-space: pre-wrap; }
 .ann-body.clamp { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 0.9rem; white-space: normal; }
 .ann-actions { display: flex; gap: 2px; align-items: flex-start; }
 .ann-row.compact { grid-template-columns: 1fr; gap: 8px; padding: 16px 0; }
@@ -567,7 +575,7 @@ h1, h2, h3, h4 {
 .event-day { font-family: var(--font-mono); font-size: 3.2rem; font-weight: 500; line-height: 0.9; letter-spacing: -0.04em; }
 .event-title { font-family: var(--font-body); font-weight: 800; font-size: 1.2rem; text-transform: none; letter-spacing: -0.01em; }
 .event-where { margin-top: 6px; color: var(--accent-dark); }
-.event-desc { margin: 10px 0 0; color: #4c423b; }
+.event-desc { margin: 10px 0 0; color: var(--text-soft); }
 .event-actions { display: flex; gap: 2px; flex-wrap: wrap; justify-content: flex-end; }
 .event-row.is-cancelled .event-title, .event-row.is-cancelled .event-day { text-decoration: line-through; text-decoration-thickness: 2px; color: var(--muted); }
 .event-row.compact { grid-template-columns: 64px 1fr; gap: 16px; padding: 16px 0; }
@@ -615,4 +623,52 @@ h1, h2, h3, h4 {
 @media (max-width: 900px) {
   .hero { grid-template-columns: minmax(0, 1fr); }
   .hero-title { font-size: clamp(1.9rem, 8.2vw, 6rem); }
+}
+
+/* ==========================================================================
+   Navy poster theme — accent is now a strong red, so anything sitting on the
+   accent uses white text; Anton has a single weight, so headings use 400.
+   ========================================================================== */
+h1, h2, h3, h4,
+.page-title, .hero-title, .auth-side h1, .logo, .blob, .avatar { font-weight: 400; letter-spacing: 0.01em; }
+
+.page-title { font-size: clamp(3rem, 10vw, 7rem); color: var(--accent); line-height: 0.92; letter-spacing: 0.005em; }
+.hero-title { font-size: clamp(3.2rem, 11vw, 8.5rem); line-height: 0.9; letter-spacing: 0.005em; }
+.hero-accent { background: none; padding: 0; color: var(--accent); }
+.section-title { font-size: clamp(1.4rem, 3vw, 1.9rem); letter-spacing: 0.02em; }
+.club-card-title { font-size: 1.45rem; letter-spacing: 0.02em; }
+.club-title { font-size: clamp(2.6rem, 8vw, 5.5rem); }
+.modal h3, .empty h4 { letter-spacing: 0.03em; font-size: 1.35rem; }
+.logo { font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.auth-side h1 { font-size: clamp(3rem, 6.5vw, 6rem); line-height: 0.92; }
+.auth-box h2 { font-size: 2.6rem; letter-spacing: 0.02em; }
+
+/* Things placed on the red accent */
+.btn-primary, .btn-primary:hover,
+.tab.active,
+.nav-links a.active,
+.mobile-menu a.active,
+.badge-accent,
+.file-icon,
+.vote-btn.up { color: var(--on-accent); }
+.btn-primary { font-weight: 700; letter-spacing: 0.01em; }
+.vote-btn.up { background: var(--accent); }
+.vote-btn.down { background: var(--info-soft); color: var(--accent-dark); }
+.file-icon { background: var(--accent); }
+.badge-approved { background: var(--info-soft); color: var(--accent-dark); }
+.badge-danger { background: var(--accent); }
+
+/* Club blobs: navy letter on light/red shapes */
+.blob { color: var(--bg); }
+
+/* Accents & panels */
+.label-pill::before { background: var(--accent); }
+.scroll-progress { background: var(--accent); }
+.scroll-progress::after { background: var(--accent-dark); opacity: 0.35; }
+.auth-side { background: var(--surface-deep); color: var(--text); }
+.auth-side .logo { color: var(--text); }
+.post-pinned { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
+
+@media (max-width: 900px) {
+  .hero-title { font-size: clamp(3rem, 15vw, 6rem); }
 }
