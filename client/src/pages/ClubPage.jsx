@@ -39,7 +39,7 @@ export default function ClubPage() {
     <>
       <header className="club-hero fade-up">
         <div className="blob blob-lg" style={{ background: club.color }}>{club.name[0]}</div>
-        <div style={{ flex: 1, minWidth: 0 }}>
+        <div className="club-hero-body">
           <div className="row">
             <span className="label-pill">Club</span>
             {isMod && <span className="badge badge-dark">You moderate this club</span>}
@@ -51,7 +51,9 @@ export default function ClubPage() {
             <span>{club.postCount} posts</span>
           </div>
         </div>
-        <JoinButton club={club} onChange={onMembershipChange} />
+        <div className="club-hero-join">
+          <JoinButton club={club} onChange={onMembershipChange} />
+        </div>
       </header>
 
       <div className="two-col section">

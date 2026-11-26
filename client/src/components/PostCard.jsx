@@ -65,7 +65,12 @@ export default function PostCard({ post, onChange, onDelete, showClub = true, fu
       <div className="post-main">
         <div className="mono post-meta">
           {post.pinned && <span className="badge badge-accent">Pinned</span>}
-          {showClub && <Link to={`/clubs/${post.club.slug}`} className="post-club">{post.club.name}</Link>}
+          {showClub && (
+            <>
+              <Link to={`/clubs/${post.club.slug}`} className="post-club">{post.club.name}</Link>
+              <span aria-hidden="true">·</span>
+            </>
+          )}
           <span>{post.author?.name || 'Deleted user'}</span>
           {post.author?.role === 'admin' && <span className="badge badge-dark">{post.author.adminTitle}</span>}
           <span>· {timeAgo(post.createdAt)}</span>
