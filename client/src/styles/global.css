@@ -745,22 +745,6 @@ h1, h2, h3, h4,
 
 /* Preview band */
 .landing-band { margin-top: 120px; padding: 110px 0; background: var(--surface-deep); border-block: 1px solid var(--border); }
-.preview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-.preview-grid .lead { margin-top: 20px; }
-.check-list { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 10px; }
-.check-list li { display: flex; gap: 12px; align-items: center; }
-.check-list li::before { content: '✓'; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--on-accent); font-size: 0.75rem; flex-shrink: 0; }
-.preview-stage { position: relative; height: 440px; }
-.preview-card { position: absolute; background: var(--surface); border: 1px solid var(--border-strong); border-radius: var(--radius); padding: 20px 22px; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6); }
-.preview-title { font-weight: 800; font-size: 1.05rem; margin: 8px 0 6px; line-height: 1.3; }
-.preview-lines { display: grid; gap: 7px; margin-top: 10px; }
-.preview-lines span { height: 8px; border-radius: 4px; background: var(--surface-2); width: 100%; }
-.preview-post { top: 0; left: 0; width: 78%; animation: floatA 7s var(--ease) infinite; }
-.preview-event { top: 200px; right: 0; width: 62%; display: flex; gap: 18px; align-items: center; animation: floatB 8s var(--ease) infinite; border-color: var(--accent); }
-.preview-event .event-day { color: var(--accent); }
-.preview-ann { bottom: 0; left: 2%; width: 58%; animation: floatA 9s var(--ease) infinite reverse; }
-@keyframes floatA { 0%, 100% { transform: translateY(0) rotate(-1.5deg); } 50% { transform: translateY(-12px) rotate(-0.5deg); } }
-@keyframes floatB { 0%, 100% { transform: translateY(0) rotate(2deg); } 50% { transform: translateY(10px) rotate(1deg); } }
 
 /* Media gallery */
 .media-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 40px; }
@@ -797,7 +781,6 @@ h1, h2, h3, h4,
 /* Responsive */
 @media (max-width: 1000px) {
   .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .preview-grid { grid-template-columns: 1fr; }
   .roles-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
@@ -805,21 +788,55 @@ h1, h2, h3, h4,
   .feature-grid { grid-template-columns: 1fr; }
   .landing-section { padding-top: 88px; }
   .landing-band { margin-top: 88px; padding: 80px 0; }
-  .preview-stage { height: 400px; }
-  .preview-post { width: 92%; }
-  .preview-event { width: 80%; }
-  .preview-ann { width: 80%; left: 0; }
   .media-grid { grid-template-columns: 1fr; }
   .media-item.media-wide { grid-column: auto; grid-row: auto; aspect-ratio: 4 / 3; }
   .landing .nav-right .btn-arrow { padding: 6px 14px 6px 6px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; }
-  .ticker-track, .preview-card, .scroll-cue { animation: none !important; }
+  .ticker-track, .scroll-cue { animation: none !important; }
+}
+
+/* ==========================================================================
+   Colour balance: Scarlet Red only for primary actions & alerts;
+   Stone Blue carries highlights, active states and feature accents.
+   ========================================================================== */
+:root { --on-blue: #03203d; }
+.page-title { color: var(--accent-dark); }
+.hero-accent { color: var(--accent-dark); }
+.label-pill::before { background: var(--accent-dark); }
+.scroll-progress { background: var(--accent-dark); }
+.tab.active,
+.nav-links a.active,
+.mobile-menu a.active { background: var(--accent-dark); color: var(--on-blue); }
+.badge-accent { background: var(--accent-dark); color: var(--on-blue); }
+.vote-btn.up { background: var(--accent-dark); color: var(--on-blue); }
+.post-pinned { border-color: var(--accent-dark); box-shadow: inset 3px 0 0 var(--accent-dark); }
+.file-icon { background: var(--accent-dark); color: var(--on-blue); }
+.avatar { color: var(--bg); }
+.feature:hover { border-color: var(--accent-dark); }
+.feature:hover .feature-icon { background: var(--accent-dark); color: var(--on-blue); }
+.ticker { background: var(--accent-dark); color: var(--on-blue); }
+.ticker-track b { color: var(--accent); }
+.role-card.role-admin { background: var(--accent-dark); border-color: var(--accent-dark); color: var(--on-blue); }
+.role-card.role-admin .mono { color: rgba(3, 32, 61, 0.75); }
+.role-card.role-admin li { border-top-color: rgba(3, 32, 61, 0.2); }
+.cta-band { background: var(--accent-dark); color: var(--on-blue); }
+.cta-band .btn-outline-light { border-color: var(--on-blue); color: var(--on-blue); }
+.cta-band .btn-outline-light:hover { background: var(--on-blue); color: var(--text); }
+
+/* ---------- Campus life section (crystal ball) ---------- */
+.life-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.life-list { list-style: none; padding: 0; margin: 32px 0 0; display: grid; gap: 0; border-top: 1px solid var(--border-strong); }
+.life-list li { display: grid; grid-template-columns: 200px 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+.life-list strong { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; text-transform: uppercase; letter-spacing: 0.02em; color: var(--accent-dark); }
+.life-list span { color: var(--text-soft); }
+.life-orb { position: relative; height: 560px; }
+@media (max-width: 1000px) {
+  .life-grid { grid-template-columns: 1fr; }
+  .life-orb { height: 420px; order: -1; }
 }
 @media (max-width: 640px) {
-  /* stack the floating preview cards on phones */
-  .preview-stage { height: auto; display: grid; gap: 14px; }
-  .preview-card { position: relative; inset: auto; width: 100% !important; left: auto; }
-  .preview-event { top: auto; margin-left: 18px; }
+  .life-list li { grid-template-columns: 1fr; gap: 4px; }
+  .life-orb { height: 340px; }
 }

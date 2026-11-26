@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../api/client';
 import HeroBackground from '../components/HeroBackground';
+import CrystalizedBall from '../components/CrystalizedBall/CrystalizedBall';
 import CountUp from '../components/CountUp';
 import { ArrowIcon, LogoMark } from '../components/ui';
 import useReveal from '../hooks/useReveal';
@@ -34,6 +35,12 @@ const ROLES = [
   { name: 'Admin', tag: 'HOD · Head CR · Head GR', points: ['Approve / reject club requests', 'Assign club moderators', 'Publish announcements', 'Create, edit & cancel events'] },
 ];
 
+const LIFE_POINTS = [
+  { title: 'Find your people', text: 'From AI to cyber security, there is a club for every interest — or start your own.' },
+  { title: 'Grow your network', text: 'Meet seniors, project partners and alumni who have walked the same path.' },
+  { title: 'Never miss a moment', text: 'Hackathons, workshops and meetups, all in one calendar.' },
+];
+
 const TICKER = ['Clubs', 'Discussions', 'Announcements', 'Events', 'Hackathons', 'Workshops', 'Study groups', 'Societies'];
 
 function LandingNav() {
@@ -43,7 +50,7 @@ function LandingNav() {
         <a href="#top" className="logo"><LogoMark /><span>Campus&nbsp;Connect</span></a>
         <ul className="nav-links">
           <li><a href="#features">Features</a></li>
-          <li><a href="#preview">Preview</a></li>
+          <li><a href="#campus-life">Campus life</a></li>
           <li><a href="#events">Events</a></li>
           <li><a href="#roles">Roles</a></li>
         </ul>
@@ -54,32 +61,6 @@ function LandingNav() {
           </Link>
         </div>
       </nav>
-    </div>
-  );
-}
-
-/** Static, decorative mock-up of the app UI (no data calls). */
-function AppPreview() {
-  return (
-    <div className="preview-stage" aria-hidden="true">
-      <div className="preview-card preview-post">
-        <div className="mono post-meta"><span className="badge badge-accent">Pinned</span><span className="post-club">Web Dev Society</span><span>· Hamza · 2h</span></div>
-        <div className="preview-title">Showcase Friday — bring your side projects!</div>
-        <div className="preview-lines"><span /><span /><span style={{ width: '60%' }} /></div>
-        <div className="row mono" style={{ gap: 16, marginTop: 14 }}><span>▲ 24</span><span>12 comments</span><span>Save</span></div>
-      </div>
-      <div className="preview-card preview-event">
-        <div className="event-day">04</div>
-        <div>
-          <div className="preview-title">Department Hackathon</div>
-          <div className="mono event-where">9:00 AM · CS Block</div>
-        </div>
-      </div>
-      <div className="preview-card preview-ann">
-        <span className="badge badge-dark">Official</span>
-        <div className="preview-title">Mid-term schedule released</div>
-        <div className="mono">↓ midterm-schedule.pdf</div>
-      </div>
     </div>
   );
 }
@@ -155,20 +136,27 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ---------- Preview ---------- */}
-      <section className="landing-band" id="preview">
-        <div className="container preview-grid">
+      {/* ---------- Campus life (crystal ball) ---------- */}
+      <section className="landing-band" id="campus-life">
+        <div className="container life-grid">
           <div className="reveal">
-            <span className="label-pill">See it in action</span>
-            <h2 className="landing-h2">Built like a feed.<br /><span className="hero-accent">Run like a department.</span></h2>
-            <p className="lead">Reddit-style discussions for every club, with official announcements and the calendar always one tap away. Fast, responsive and made for phones too.</p>
-            <ul className="check-list">
-              <li>Threaded replies, votes and pinned posts</li>
-              <li>Image &amp; document sharing</li>
-              <li>Role-based access, enforced on the server</li>
+            <span className="label-pill">Campus life</span>
+            <h2 className="landing-h2">More than classes.<br /><span className="hero-accent">Find your circle.</span></h2>
+            <p className="lead" style={{ marginTop: 20 }}>
+              University is the people you meet along the way. Campus Connect brings every club, every idea and every event in the CS department together.
+            </p>
+            <ul className="life-list">
+              {LIFE_POINTS.map((p) => (
+                <li key={p.title}>
+                  <strong>{p.title}</strong>
+                  <span>{p.text}</span>
+                </li>
+              ))}
             </ul>
           </div>
-          <div className="reveal" style={{ transitionDelay: '120ms' }}><AppPreview /></div>
+          <div className="life-orb reveal" style={{ transitionDelay: '120ms' }} aria-hidden="true">
+            <CrystalizedBall preset="plasma" color="#639CC5" size={0.7} crackle={0.85} fill={0.5} interactive hoverStrength={0.7} />
+          </div>
         </div>
       </section>
 

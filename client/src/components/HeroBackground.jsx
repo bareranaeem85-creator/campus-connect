@@ -1,7 +1,7 @@
 import NeonGlyphs from './NeonGlyphs/NeonGlyphs';
 
-// Site palette instead of the component's default pinks/cyans: scarlet red, stone blue, cream.
-const PALETTE = ['#EB2F33', '#639CC5', '#F3EFE7', '#9CC9E8', '#FF5A5F'];
+// Site palette instead of the component's default pinks/cyans: mostly stone blues + cream, a touch of red.
+const PALETTE = ['#639CC5', '#9CC9E8', '#F3EFE7', '#3E7FB0', '#EB2F33'];
 
 /**
  * Full-width animated glyph field behind the home hero.
