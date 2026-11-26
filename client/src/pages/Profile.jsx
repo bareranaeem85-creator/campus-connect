@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 import { useUI } from '../context/UIContext';
-import { Avatar, PageHeader } from '../components/ui';
+import PostCard from '../components/PostCard';
+import { Avatar, Empty, PageHeader, SkeletonList } from '../components/ui';
 import { formatDate } from '../utils/format';
 
 export default function Profile() {
@@ -67,6 +68,37 @@ export default function Profile() {
           )}
         </aside>
       </div>
+      <SavedPosts />
     </>
+  );
+}
+
+/** Bookmarked posts. Unsaving removes the post from this list. */
+function SavedPosts() {
+  const [posts, setPosts] = useState(null);
+  useEffect(() => {
+    api.get('/posts/bookmarks').then(setPosts).catch(() => setPosts([]));
+  }, []);
+
+  return (
+    <section className="section fade-up">
+      <div className="section-head"><span className="label-pill">Saved posts</span></div>
+      {!posts ? (
+        <SkeletonList count={2} height={110} />
+      ) : posts.length === 0 ? (
+        <Empty title="Nothing saved yet" text="Tap “Save” on any post to keep it here." />
+      ) : (
+        <div className="stack stagger">
+          {posts.map((p) => (
+            <PostCard
+              key={p._id}
+              post={p}
+              onChange={(u) => setPosts((l) => (u.bookmarked ? l.map((x) => (x._id === u._id ? u : x)) : l.filter((x) => x._id !== u._id)))}
+              onDelete={(id) => setPosts((l) => l.filter((x) => x._id !== id))}
+            />
+          ))}
+        </div>
+      )}
+    </section>
   );
 }

@@ -14,9 +14,9 @@
 - [x] Admin assigns / removes moderators
 
 ## 3. Discussions
-- [ ] Posts (text/link) — members only
-- [ ] Comments + nested replies
-- [ ] Moderator/admin delete + pin; votes; bookmarks
+- [x] Posts (text/link) — members only
+- [x] Comments + nested replies
+- [x] Moderator/admin delete + pin; votes; bookmarks
 
 ## 4. Department
 - [ ] Announcements CRUD (admin), public list newest first
