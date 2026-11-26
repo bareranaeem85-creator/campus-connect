@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { api } from '../api/client';
 import HeroBackground from '../components/HeroBackground';
 import CrystalizedBall from '../components/CrystalizedBall/CrystalizedBall';
+import CampusCarousel from '../components/CampusCarousel';
 import CountUp from '../components/CountUp';
 import { ArrowIcon, LogoMark } from '../components/ui';
 import useReveal from '../hooks/useReveal';
-import landingMedia from '../data/landingMedia';
 import { formatTime } from '../utils/format';
 
 /* Simple line icons for the feature blocks */
@@ -160,6 +160,16 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* ---------- Life at CS (photo carousel) ---------- */}
+      <section className="landing-section life-at-cs" id="gallery">
+        <div className="container reveal" style={{ textAlign: 'center' }}>
+          <span className="label-pill">Life at CS</span>
+          <h2 className="landing-h2">Moments that<br /><span className="hero-accent">bring us together.</span></h2>
+          <p className="lead" style={{ margin: '18px auto 0' }}>Late-night projects, packed seminars, quiet library hours and loud game days. Drag to explore.</p>
+        </div>
+        <div className="reveal" style={{ transitionDelay: '120ms' }}><CampusCarousel /></div>
+      </section>
+
       {/* ---------- Clubs (live) ---------- */}
       {data?.clubs?.length > 0 && (
         <section className="container landing-section">
@@ -212,28 +222,6 @@ export default function Landing() {
           <p className="muted reveal" style={{ marginTop: 24 }}>New events are announced soon — log in to see the full calendar.</p>
         )}
       </section>
-
-      {/* ---------- Media gallery (shown once photos/videos are added) ---------- */}
-      {landingMedia.length > 0 && (
-        <section className="container landing-section" id="gallery">
-          <div className="reveal">
-            <span className="label-pill">Life at CS</span>
-            <h2 className="landing-h2">Moments from the department.</h2>
-          </div>
-          <div className="media-grid">
-            {landingMedia.map((m, i) => (
-              <figure key={m.src} className={`media-item reveal ${i === 0 ? 'media-wide' : ''}`} style={{ transitionDelay: `${(i % 3) * 80}ms` }}>
-                {m.type === 'video' ? (
-                  <video src={m.src} poster={m.poster} autoPlay muted loop playsInline />
-                ) : (
-                  <img src={m.src} alt={m.caption || ''} loading="lazy" />
-                )}
-                {m.caption && <figcaption className="mono">{m.caption}</figcaption>}
-              </figure>
-            ))}
-          </div>
-        </section>
-      )}
 
       {/* ---------- Roles ---------- */}
       <section className="container landing-section" id="roles">

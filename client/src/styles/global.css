@@ -746,13 +746,6 @@ h1, h2, h3, h4,
 /* Preview band */
 .landing-band { margin-top: 120px; padding: 110px 0; background: var(--surface-deep); border-block: 1px solid var(--border); }
 
-/* Media gallery */
-.media-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 40px; }
-.media-item { margin: 0; position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); aspect-ratio: 4 / 3; background: var(--surface); }
-.media-item.media-wide { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
-.media-item img, .media-item video { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease); }
-.media-item:hover img, .media-item:hover video { transform: scale(1.04); }
-.media-item figcaption { position: absolute; left: 12px; bottom: 12px; padding: 5px 12px; border-radius: var(--pill); background: rgba(3, 32, 61, 0.8); color: var(--text); }
 
 /* Roles */
 .roles-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 48px; }
@@ -788,8 +781,6 @@ h1, h2, h3, h4,
   .feature-grid { grid-template-columns: 1fr; }
   .landing-section { padding-top: 88px; }
   .landing-band { margin-top: 88px; padding: 80px 0; }
-  .media-grid { grid-template-columns: 1fr; }
-  .media-item.media-wide { grid-column: auto; grid-row: auto; aspect-ratio: 4 / 3; }
   .landing .nav-right .btn-arrow { padding: 6px 14px 6px 6px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -840,3 +831,8 @@ h1, h2, h3, h4,
   .life-list li { grid-template-columns: 1fr; gap: 4px; }
   .life-orb { height: 340px; }
 }
+
+/* ---------- Life at CS photo carousel ---------- */
+.life-at-cs { padding-left: 0; padding-right: 0; }
+.campus-carousel { position: relative; width: 100%; height: 560px; margin-top: 24px; }
+@media (max-width: 640px) { .campus-carousel { height: 440px; } }
