@@ -54,10 +54,11 @@ exports.listPosts = asyncHandler(async (req, res) => {
   res.json(sortPosts(posts.map((p) => serialize(p, req.user)), req.query.sort));
 });
 
-// GET /api/posts/feed — latest posts from the clubs the user has joined
+// GET /api/posts/feed — latest posts from the user's joined clubs (admins oversee all clubs)
 exports.feed = asyncHandler(async (req, res) => {
-  const clubIds = await Club.find({ members: req.user._id }).distinct('_id');
-  const posts = await Post.find({ club: { $in: clubIds } }).populate(POPULATE).sort({ createdAt: -1 }).limit(30);
+  const filter = {};
+  if (req.user.role !== 'admin') filter.club = { $in: await Club.find({ members: req.user._id }).distinct('_id') };
+  const posts = await Post.find(filter).populate(POPULATE).sort({ createdAt: -1 }).limit(30);
   const list = posts.map((p) => serialize(p, req.user));
   if (req.query.sort === 'top') list.sort((a, b) => b.score - a.score);
   res.json(list);

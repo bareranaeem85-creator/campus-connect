@@ -24,7 +24,10 @@ export default function Layout() {
   const { user, loading } = useAuth();
   const location = useLocation();
 
-  useEffect(() => window.scrollTo(0, 0), [location.pathname]);
+  // Braces matter: newer browsers make scrollTo return a Promise, which React would treat as a cleanup.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   if (loading) return <Loader />;
   if (!user) return <Navigate to="/login" replace state={{ from: location.pathname }} />;

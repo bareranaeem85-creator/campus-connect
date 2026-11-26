@@ -9,7 +9,10 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => setOpen(false), [location.pathname]); // close mobile menu on navigation
+  // Close the mobile menu on navigation.
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
 
   const links = [
     { to: '/', label: 'Home', end: true },
