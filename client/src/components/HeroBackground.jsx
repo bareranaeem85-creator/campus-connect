@@ -26,6 +26,7 @@ export default function HeroBackground() {
         scramble={0.5}
         fade={0.75}
         aberration={0.5}
+        brightness={1.6}
         mouseInteraction
         burstOnClick
       />
