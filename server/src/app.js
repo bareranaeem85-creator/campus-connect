@@ -7,6 +7,8 @@ const { notFound, errorHandler } = require('./middleware/error');
 const app = express();
 
 app.use(cors());
+// Uploads send base64 file data, so they get a bigger body limit (2 MB file ≈ 2.7 MB base64).
+app.use('/api/uploads', express.json({ limit: '3mb' }), require('./routes/uploadRoutes'));
 app.use(express.json({ limit: '1mb' }));
 
 // ---- API routes ----

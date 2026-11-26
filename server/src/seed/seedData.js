@@ -5,6 +5,7 @@ const Post = require('../models/Post');
 const Comment = require('../models/Comment');
 const Announcement = require('../models/Announcement');
 const Event = require('../models/Event');
+const Attachment = require('../models/Attachment');
 
 // Demo accounts (also shown on the login page). Shared password keeps demos simple.
 const DEMO_PASSWORD = 'password123';
@@ -21,7 +22,7 @@ const hoursAgo = (n) => new Date(Date.now() - n * 3600 * 1000);
 /** Wipes all collections and inserts demo data. */
 async function seedDatabase() {
   await Promise.all(
-    [User, Club, ClubRequest, Post, Comment, Announcement, Event].map((M) => M.deleteMany({}))
+    [User, Club, ClubRequest, Post, Comment, Announcement, Event, Attachment].map((M) => M.deleteMany({}))
   );
 
   // ---- Users ----
@@ -79,7 +80,18 @@ async function seedDatabase() {
   await ClubRequest.create({ name: 'Game Dev Guild', description: 'Unity, Godot and game jams.', reason: 'Many students want to build games together and join global game jams.', requestedBy: fatima._id });
 
   // ---- Announcements ----
-  await Announcement.create({ title: 'Mid-term examination schedule released', body: 'The mid-term schedule for all CS sections is now available. Please check your section timings carefully.', attachmentUrl: 'https://example.com/midterm-schedule.pdf', author: hod._id, createdAt: hoursAgo(30) });
+  // A real uploaded attachment so the download works in the demo.
+  const schedule = [
+    'CS DEPARTMENT - MID-TERM EXAMINATION SCHEDULE',
+    '',
+    'Mon  09:00  Data Structures        Hall A',
+    'Tue  09:00  Operating Systems      Hall B',
+    'Wed  13:00  Database Systems       Hall A',
+    'Thu  09:00  Computer Networks      Hall C',
+    'Fri  13:00  Software Engineering   Hall B',
+  ].join('\n');
+  const scheduleFile = await Attachment.create({ filename: 'midterm-schedule.txt', mimetype: 'text/plain', size: Buffer.byteLength(schedule), data: Buffer.from(schedule), uploadedBy: hod._id });
+  await Announcement.create({ title: 'Mid-term examination schedule released', body: 'The mid-term schedule for all CS sections is now available. Please check your section timings carefully.', attachmentUrl: `/api/uploads/${scheduleFile._id}`, attachmentName: scheduleFile.filename, author: hod._id, createdAt: hoursAgo(30) });
   await Announcement.create({ title: 'Lab 3 closed for maintenance on Friday', body: 'Lab 3 will be unavailable this Friday from 9 AM to 1 PM. Use Lab 1 for scheduled sessions.', author: headCR._id, createdAt: hoursAgo(6) });
   await Announcement.create({ title: 'Internship fair registrations open', body: 'Register before the deadline to secure a slot with partner companies.', link: 'https://example.com/internship-fair', author: headGR._id, createdAt: hoursAgo(1) });
 

@@ -1,6 +1,7 @@
 const Post = require('../models/Post');
 const Club = require('../models/Club');
 const Comment = require('../models/Comment');
+const Attachment = require('../models/Attachment');
 const { canModerate } = require('../middleware/auth');
 const { ApiError, asyncHandler, requireFields, isValidUrl } = require('../utils/http');
 
@@ -85,10 +86,18 @@ exports.createPost = asyncHandler(async (req, res) => {
   if (!club) throw new ApiError(404, 'Club not found');
   assertCanParticipate(req.user, club);
 
-  if (type === 'link' && !isValidUrl(url)) throw new ApiError(400, 'Please enter a valid link (http/https)');
-  if (type === 'text' && !body.trim()) throw new ApiError(400, 'Post body cannot be empty');
+  // Optional uploaded file: look it up so the stored name/type come from the server, not the client.
+  let attachment;
+  if (req.body.attachmentId) {
+    const file = await Attachment.findById(req.body.attachmentId);
+    if (!file) throw new ApiError(400, 'Attached file not found — please upload it again');
+    attachment = { url: `/api/uploads/${file._id}`, filename: file.filename, mimetype: file.mimetype };
+  }
 
-  const post = await Post.create({ club: club._id, author: req.user._id, type, title, body, url: type === 'link' ? url : '' });
+  if (type === 'link' && !isValidUrl(url)) throw new ApiError(400, 'Please enter a valid link (http/https)');
+  if (type === 'text' && !body.trim() && !attachment) throw new ApiError(400, 'Write something or attach a file');
+
+  const post = await Post.create({ club: club._id, author: req.user._id, type, title, body, url: type === 'link' ? url : '', attachment });
   await post.populate(POPULATE);
   res.status(201).json(serialize(post, req.user));
 });

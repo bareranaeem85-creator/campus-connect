@@ -8,6 +8,12 @@ const postSchema = new mongoose.Schema(
     title: { type: String, required: true, trim: true, maxlength: 200 },
     body: { type: String, maxlength: 5000, default: '' },
     url: { type: String, default: '' },
+    // Optional uploaded image/document (see Attachment model)
+    attachment: {
+      url: { type: String, default: '' },
+      filename: { type: String, default: '' },
+      mimetype: { type: String, default: '' },
+    },
     upvotes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     downvotes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     pinned: { type: Boolean, default: false },

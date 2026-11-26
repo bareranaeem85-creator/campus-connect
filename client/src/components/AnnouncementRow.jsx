@@ -14,7 +14,11 @@ export default function AnnouncementRow({ a, compact, actions }) {
         {!compact && (a.link || a.attachmentUrl) && (
           <div className="row" style={{ marginTop: 12, gap: 8 }}>
             {a.link && <a className="btn btn-outline btn-sm" href={a.link} target="_blank" rel="noopener noreferrer">Open link ↗</a>}
-            {a.attachmentUrl && <a className="btn btn-outline btn-sm" href={a.attachmentUrl} target="_blank" rel="noopener noreferrer">Attachment ↓</a>}
+            {a.attachmentUrl && (
+              <a className="btn btn-outline btn-sm" href={a.attachmentUrl} target="_blank" rel="noopener noreferrer">
+                ↓ {a.attachmentName || 'Attachment'}
+              </a>
+            )}
           </div>
         )}
         <div className="mono" style={{ marginTop: 10 }}>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { api } from '../api/client';
 import { useUI } from '../context/UIContext';
+import FileUpload from './FileUpload';
 
 const EMPTY = { type: 'text', title: '', body: '', url: '' };
 
@@ -11,6 +12,7 @@ const EMPTY = { type: 'text', title: '', body: '', url: '' };
 export default function PostComposer({ clubId, clubs, onCreated, autoFocus }) {
   const { toast } = useUI();
   const [form, setForm] = useState({ ...EMPTY, club: clubId || clubs?.[0]?._id || '' });
+  const [file, setFile] = useState(null); // uploaded attachment { _id, url, filename, size }
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
@@ -21,14 +23,15 @@ export default function PostComposer({ clubId, clubs, onCreated, autoFocus }) {
     setError('');
     if (!form.club) return setError('Choose a club');
     if (!form.title.trim()) return setError('Title is required');
-    if (form.type === 'text' && !form.body.trim()) return setError('Write something in the body');
+    if (form.type === 'text' && !form.body.trim() && !file) return setError('Write something or attach a file');
     if (form.type === 'link' && !/^https?:\/\/\S+\.\S+/.test(form.url)) return setError('Enter a valid URL starting with http(s)://');
 
     setBusy(true);
     try {
-      const post = await api.post('/posts', form);
+      const post = await api.post('/posts', { ...form, attachmentId: file?._id });
       toast('Post published');
       setForm({ ...EMPTY, club: form.club });
+      setFile(null);
       onCreated?.(post);
     } catch (err) {
       setError(err.message);
@@ -66,6 +69,7 @@ export default function PostComposer({ clubId, clubs, onCreated, autoFocus }) {
         onChange={set('body')}
         aria-label="Body"
       />
+      <FileUpload value={file} onChange={setFile} label="Attach image or document" />
       {error && <p className="form-error" role="alert">{error}</p>}
       <div className="row" style={{ justifyContent: 'flex-end' }}>
         <button className="btn btn-primary" disabled={busy}>{busy ? 'Posting…' : 'Publish post'}</button>

@@ -84,6 +84,19 @@ export default function PostCard({ post, onChange, onDelete, showClub = true, fu
         )}
         {post.body && <p className={`post-body ${full ? 'full' : ''}`}>{post.body}</p>}
 
+        {post.attachment?.url && (
+          post.attachment.mimetype?.startsWith('image/') ? (
+            <a href={post.attachment.url} target="_blank" rel="noopener noreferrer" className={`post-image ${full ? 'full' : ''}`}>
+              <img src={post.attachment.url} alt={post.attachment.filename} loading="lazy" />
+            </a>
+          ) : (
+            <a href={post.attachment.url} target="_blank" rel="noopener noreferrer" className="file-chip file-chip-link">
+              <span className="file-icon" aria-hidden="true">↓</span>
+              <span className="file-name">{post.attachment.filename}</span>
+            </a>
+          )
+        )}
+
         <div className="post-actions">
           <button className="btn btn-ghost btn-sm" onClick={() => navigate(href)}>
             {post.commentCount} comment{post.commentCount === 1 ? '' : 's'}

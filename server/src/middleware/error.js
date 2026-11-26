@@ -13,6 +13,9 @@ const errorHandler = (err, _req, res, _next) => {
   } else if (err.name === 'CastError') {
     status = 400;
     message = `Invalid ${err.path}`;
+  } else if (err.type === 'entity.too.large') {
+    status = 413;
+    message = 'File or request is too large (max 2 MB)';
   } else if (err.code === 11000) {
     status = 409;
     message = `${Object.keys(err.keyValue).join(', ')} already exists`;

@@ -19,10 +19,11 @@ A Reddit-style community platform for **CS Department students**: topic-based cl
   - **Upvotes / downvotes** and sorting by New or Top
   - **Pinned posts** that stay at the top (pinned by moderators)
   - **Bookmarks**, shown as "Saved posts" on the Profile page
+  - **Image / document sharing**: attach a PDF, image, Word, PowerPoint or text file (up to 2 MB). Images show as a preview.
 - Only club members can post and comment
 
 ### Official announcements
-- Admins create, edit and delete announcements (title, text, optional link, optional attachment URL)
+- Admins create, edit and delete announcements (title, text, optional link, optional **uploaded attachment** or file link)
 - Everyone sees them newest first, with the publication **date and time**
 
 ### Event calendar
@@ -94,7 +95,7 @@ campus-connect/
 │       ├── index.js           startup: connect DB, seed if empty, start listening
 │       ├── app.js             Express app, routes, serves client/dist in production
 │       ├── config/db.js       Mongo connection (in-memory fallback for development)
-│       ├── models/            User, Club, ClubRequest, Post, Comment, Announcement, Event
+│       ├── models/            User, Club, ClubRequest, Post, Comment, Announcement, Event, Attachment
 │       ├── controllers/       request handlers (business logic)
 │       ├── routes/            URL → middleware → controller
 │       ├── middleware/        auth.js (protect / requireAdmin / canModerate), error.js
@@ -113,7 +114,8 @@ campus-connect/
 | Posts | `GET /api/posts?club=&sort=` · `GET /api/posts/feed` · `POST /api/posts` · `DELETE /api/posts/:id` · `PATCH /api/posts/:id/pin` · `POST /api/posts/:id/vote` · `POST /api/posts/:id/bookmark` |
 | Comments | `GET/POST /api/posts/:id/comments` · `DELETE /api/comments/:id` |
 | Announcements | `GET /api/announcements` · `POST/PUT/DELETE` (admin) |
-| Events | `GET /api/events?when=upcoming\|past` · `POST/PUT/DELETE`, `PATCH /:id/status` (admin) |
+| Events | `GET /api/events?when=upcoming
+| Uploads | `POST /api/uploads` (logged in; base64 JSON, max 2 MB, allowed file types only) · `GET /api/uploads/:id` |\|past` · `POST/PUT/DELETE`, `PATCH /:id/status` (admin) |
 
 ---
 
