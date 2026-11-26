@@ -12,6 +12,9 @@ app.use(express.json({ limit: '1mb' }));
 // ---- API routes ----
 app.get('/api/health', (_req, res) => res.json({ ok: true }));
 app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/clubs', require('./routes/clubRoutes'));
+app.use('/api/club-requests', require('./routes/clubRequestRoutes'));
 app.use('/api', notFound);
 
 // ---- Serve the built React app in production (single Render service) ----

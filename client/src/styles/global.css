@@ -449,3 +449,36 @@ h1, h2, h3, h4 {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
+
+/* ---------- Clubs ---------- */
+.club-card { display: flex; flex-direction: column; gap: 18px; }
+.club-card-body { display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.club-card-title { font-size: 1.05rem; text-transform: uppercase; }
+.club-card-desc { margin: 0; font-size: 0.94rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.club-card-foot { padding-top: 14px; border-top: 1px solid var(--border); }
+.club-hero { display: flex; align-items: flex-start; gap: 28px; flex-wrap: wrap; }
+.club-title { font-size: clamp(2rem, 5.5vw, 3.8rem); }
+.member-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.dot-blob { width: 14px; height: 14px; border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%; flex-shrink: 0; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 6px 4px 12px; border-radius: var(--pill); background: var(--bg); border: 1px solid var(--border); font-size: 0.84rem; }
+.chip button { border: 0; background: transparent; cursor: pointer; width: 20px; height: 20px; border-radius: 50%; color: var(--muted); line-height: 1; transition: background 0.2s var(--ease), color 0.2s var(--ease); }
+.chip button:hover { background: var(--danger); color: #fff; }
+.small { font-size: 0.86rem; }
+
+/* ---------- Tables (admin) ---------- */
+.table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.table { width: 100%; border-collapse: collapse; }
+.table th { text-align: left; padding: 14px 18px; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 500; border-bottom: 1px solid var(--border); }
+.table td { padding: 16px 18px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.table tbody tr { transition: background 0.2s var(--ease); }
+.table tbody tr:hover { background: #fbf9f6; }
+.table tbody tr:last-child td { border-bottom: 0; }
+.table-actions { text-align: right; white-space: nowrap; }
+@media (max-width: 760px) {
+  .table thead { display: none; }
+  .table, .table tbody, .table tr, .table td { display: block; width: 100%; }
+  .table tr { padding: 14px 16px; border-bottom: 1px solid var(--border); }
+  .table td { border: 0; padding: 6px 0; }
+  .table td[data-label]::before { content: attr(data-label); display: block; font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .table-actions { text-align: left; padding-top: 10px !important; }
+}

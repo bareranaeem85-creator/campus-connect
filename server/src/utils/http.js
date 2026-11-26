@@ -25,4 +25,10 @@ function isValidUrl(value) {
   }
 }
 
-module.exports = { ApiError, asyncHandler, requireFields, isValidUrl };
+/** Escapes user text for safe use inside a RegExp (search / case-insensitive match). */
+const escapeRegex = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+/** Case-insensitive exact-match regex, e.g. for duplicate-name checks. */
+const exactCI = (s) => new RegExp(`^${escapeRegex(String(s).trim())}$`, 'i');
+
+module.exports = { ApiError, asyncHandler, requireFields, isValidUrl, escapeRegex, exactCI };
