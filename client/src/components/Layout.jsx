@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Navbar from './Navbar';
+import Landing from '../pages/Landing';
 import { Loader } from './ui';
 
 /** Thin mint bar showing how far the page has been scrolled. */
@@ -30,6 +31,8 @@ export default function Layout() {
   }, [location.pathname]);
 
   if (loading) return <Loader />;
+  // Guests: the home URL shows the public landing page; other pages require login.
+  if (!user && location.pathname === '/') return <Landing />;
   if (!user) return <Navigate to="/login" replace state={{ from: location.pathname }} />;
 
   return (

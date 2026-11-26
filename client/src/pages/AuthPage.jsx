@@ -49,7 +49,7 @@ export default function AuthPage({ mode = 'login' }) {
       <aside className="auth-side">
         <span className="ring" style={{ width: 520, height: 520, right: -180, bottom: -200 }} />
         <span className="ring" style={{ width: 340, height: 340, right: -90, bottom: -110 }} />
-        <Link to="/login" className="logo"><LogoMark /> Campus Connect</Link>
+        <Link to="/" className="logo"><LogoMark /> Campus Connect</Link>
         <div className="fade-up">
           <span className="mono" style={{ color: 'var(--accent)' }}>CS Department · Community</span>
           <h1 style={{ marginTop: 16 }}>
