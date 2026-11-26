@@ -114,8 +114,8 @@ campus-connect/
 | Posts | `GET /api/posts?club=&sort=` · `GET /api/posts/feed` · `POST /api/posts` · `DELETE /api/posts/:id` · `PATCH /api/posts/:id/pin` · `POST /api/posts/:id/vote` · `POST /api/posts/:id/bookmark` |
 | Comments | `GET/POST /api/posts/:id/comments` · `DELETE /api/comments/:id` |
 | Announcements | `GET /api/announcements` · `POST/PUT/DELETE` (admin) |
-| Events | `GET /api/events?when=upcoming
-| Uploads | `POST /api/uploads` (logged in; base64 JSON, max 2 MB, allowed file types only) · `GET /api/uploads/:id` |\|past` · `POST/PUT/DELETE`, `PATCH /:id/status` (admin) |
+| Events | `GET /api/events?when=upcoming\|past` · `POST/PUT/DELETE`, `PATCH /:id/status` (admin) |
+| Uploads | `POST /api/uploads` (logged in; base64 JSON, max 2 MB, allowed file types only) · `GET /api/uploads/:id` |
 
 ---
 
